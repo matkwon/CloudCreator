@@ -39,6 +39,8 @@ def user():
     except:
         users = []
     if request.method == 'POST':
+        if request.form.get('action') == 'Home':
+            return redirect(url_for('.region', region_option=region_option))
         with open(f"../terraform/{region_option}/terraform.tfvars.json", "r") as f:
             data = json.load(f)
         if request.form['action'] == 'Add user':
