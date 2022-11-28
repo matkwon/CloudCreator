@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<h1>Olá!</h1>
-<h2>Preencha as informações da sua Nuvem Privada nesta página.</h2>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+<h1>VPC Creator</h1>
+<h2>Create your own AWS Virtual Private Cloud.</h2>
+<h3>Choose a region in which you desire to work.</h3>
 <form method="POST" action="/">
-    <label for="AccessKeyID"></label>
-    <input type="text" id="AccessKeyID" name="AccessKeyID" placeholder="Access Key ID"><br><br>
-    <label for="SecretAccessKey"></label>
-    <input type="text" id="SecretAccessKey" name="SecretAccessKey" placeholder="Secret Access Key"><br><br>
-    <input type="submit" name="Submit" value="Submit">
+    <select name="region">
+        <option value="">--Please choose a region--</option>
+        <option value="us-east-1">us-east-1</option>
+        <option value="us-east-2">us-east-2</option>
+    </select>
+    <input type="submit" name="Region" value="Choose region">
 </form>

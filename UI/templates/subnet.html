@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+<form method="POST" action="/security_group?region_option={{ region }}">
+    <input type="submit" name="action" value="Home">
+</form>
+<h1>Subnet</h1>
+<h2>Configure your Subnet.</h2>
+<form method="POST" action="/subnet?region_option={{region}}">
+    <h3>Name of the Subnet</h3>
+    <input type="text" id="subnet_name" name="subnet_name" placeholder="subnet_x">
+    <br>
+    <h3>CIDR block</h3>
+    <input type="text" id="cidr_block" name="cidr_block" placeholder="0.0.0.0/24">
+    <p>The VPC has CIDR Block {{ cidr_block }}.</p>
+    <br>
+    <input type="submit" name="action" value="Create Subnet">
+    <br><br>
+    <select class="rectinput" name="subnet" id="subnet-select">
+        <option value="">--Please choose a subnet--</option>
+        {% for subnet in subnets %}
+            <option value="{{subnet}}">{{subnet}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" name="action" value="Delete Subnet">
+</form>

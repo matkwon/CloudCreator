@@ -30,3 +30,6 @@ website/node_modules
 **/.terraform/*
 **/.terraform.lock.hcl
 **/env/
+*.json
+*.tfstate
+*.out

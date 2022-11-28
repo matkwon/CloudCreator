@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+<form method="POST" action="/security_group?region_option={{ region }}">
+    <input type="submit" name="action" value="Home">
+</form>
+<h1>VPC</h1>
+<h2>Configure your VPC.</h2>
+<form method="POST" action="/vpc?region_option={{region}}">
+    <input type="text" id="vpc_name" name="vpc_name" placeholder="Name of the VPC">
+    <br>
+    <input type="text" id="cidr_block" name="cidr_block" placeholder="CIDR block">
+    <br>
+    <input type="submit" name="action" value="Create VPC">
+</form>

@@ -1,12 +1,8 @@
-variable "region" {
-  type        = string
-  description = "AWS region"
-}
-
 variable "vpc" {
   type = object({
     cidr_block = string
     tags       = map(string)
+    active     = bool
   })
   description = "VPC configuration"
 }
@@ -14,7 +10,6 @@ variable "vpc" {
 variable "subnets" {
   type = list(object({
     cidr_block        = string
-    availability_zone = string
     tags              = map(string)
   }))
   description = "Subnets configuration"
@@ -22,7 +17,6 @@ variable "subnets" {
 
 variable "instances" {
   type = list(object({
-    ami           = string
     instance_type = string
     nic           = string
     tags          = map(string)
@@ -35,7 +29,6 @@ variable "network_interfaces" {
     subnet          = string
     private_ips     = list(string)
     security_groups = list(string)
-    device          = string
     tags            = map(string)
   }))
   description = "Network interfaces configuration"

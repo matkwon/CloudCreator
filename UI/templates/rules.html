@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+<form method="POST" action="/security_group?region_option={{ region }}">
+    <input type="submit" name="action" value="Home">
+</form>
+<h1>Rules</h1>
+<h2>Add rules to your Security Group.</h2>
+<h3>Add</h3>
+<form method="POST" action="/rules?region_option={{ region }}&sg={{sg}}">
+    <input class="rectinput" type="text" id="from" name="from" placeholder="from port">
+    <br>
+    <input class="rectinput" type="text" id="to" name="to" placeholder="to port">
+    <br>
+    <input type="submit" name="action" value="Add rule">
+    <br>
+</form>
+<br><br>
+<h3>Create</h3>
+<form method="POST" action="/rules?region_option={{ region }}&sg={{sg}}">
+    <input type="submit" name="action" value="Create Security Group">
+</form>

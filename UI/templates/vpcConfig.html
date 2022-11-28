@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+<form method="POST" action="/security_group?region_option={{ region }}">
+    <input type="submit" name="action" value="Home">
+</form>
+<h1>VPC</h1>
+<h2>Configure your VPC.</h2>
+<form method="POST" action="/vpc?region_option={{ region }}">
+    <input type="submit" name="action" value="Create/Delete Security Group">
+</form>
+<p>{{ empty }}</p>
+<form method="POST" action="/vpc?region_option={{ region }}">
+    <input type="submit" name="action" value="Delete VPC '{{ name }}'">
+</form>

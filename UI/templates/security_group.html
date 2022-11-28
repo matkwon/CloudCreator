@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+<form method="POST" action="/security_group?region_option={{ region }}">
+    <input type="submit" name="action" value="Home">
+</form>
+<h1>Security Group</h1>
+<h2>Configure your Security Group.</h2>
+<h3>Create</h3>
+<form method="POST" action="/security_group?region_option={{ region }}">
+    <input class="rectinput" type="text" id="sg_name" name="sg_name" placeholder="Name of the Security Group to create">
+    <br>
+    <input class="rectinput" type="text" id="sg_description" name="sg_description" placeholder="Description of the Security Group to create">
+    <br>
+    <input type="submit" name="action" value="Add rules to Security Group">
+</form>
+<br><br>
+<h3>Delete</h3>
+<form method="POST" action="/security_group?region_option={{ region }}">
+    <select class="rectinput" name="security_group" id="security-group-select">
+        <option value="">--Please choose a security group--</option>
+        {% for sg in sgs %}
+            <option value="{{sg}}">{{sg}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" name="action" value="Delete Security Group">
+</form>

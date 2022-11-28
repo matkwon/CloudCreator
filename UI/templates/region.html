@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+<form method="POST" action="/security_group?region_option={{ region }}">
+    <input type="submit" name="action" value="Back">
+</form>
+<h1>Region {{region}}</h1>
+<h2>Choose an action to do.</h2>
+<form method="POST" action="/region?region_option={{region}}">
+    <input type="submit" name="action" value="Create/Configure/Delete VPC">
+    <input type="submit" name="action" value="Create/Delete Subnet">
+    <input type="submit" name="action" value="Create/Delete Instance">
+</form>

@@ -1,6 +1,6 @@
 resource "aws_instance" "instance" {
   for_each      = { for instance in var.instances : instance.tags.Name => instance }
-  ami           = each.value.ami
+  ami           = "ami-0ee23bfc74a881de5"
   instance_type = each.value.instance_type
 
   network_interface {

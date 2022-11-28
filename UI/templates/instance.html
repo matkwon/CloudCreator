@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+</head>
+<form method="POST" action="/security_group?region_option={{ region }}">
+    <input type="submit" name="action" value="Home">
+</form>
+<body>
+<p class="message">{{message}}</p>
+<h1>Instance</h1>
+<h2>Configure your Instance.</h2>
+<form method="POST" action="/instance?region_option={{region}}">
+    <h3>Name of the Instance</h3>
+    <input class="rectinput" type="text" id="instance_name" name="instance_name" placeholder="Ex.: inst1">
+    <br><br><br>
+    <h3>Type of Instance</h3>
+    <select class="rectinput" name="type" id="type-select">
+        <option value="">--Please choose a type--</option>
+        <option value="t1.micro">t1.micro (0.612 GB RAM, 1 VCPU)</option>\
+        <option value="t2.micro">t2.micro (1 GB RAM, 1 VCPU)</option>\
+    </select>
+    <br><br><br>
+    <h3>Subnet to connect</h3>
+    {% if subnets|length == 0 %}
+        <p class="warning">Create at least one subnet before creating an instance!</p>
+    {% else %}
+        <select class="rectinput" name="subnet" id="subnet-select">
+            <option value="">--Please choose a subnet--</option>
+            {% for subnet, cidr_block in subnets.items() %}
+                <option value="{{subnet}}">{{subnet}} - {{cidr_block}}</option>
+            {% endfor %}
+        </select>
+    {% endif %}
+    <br><br><br>
+    <h3>IP addresses of the Instance</h3>
+    <p>(If multiple, use a comma [','] separator)</p>
+    <input class="rectinput" type="text" id="instance_ip" name="instance_ip" placeholder="Ex.: 10.0.1.34,10.0.1.56">
+    <br><br><br>
+    <h3>Security Groups</h3>
+    {% if sgs|length == 0 %}
+        <p class="warning">Create a Secutiry Group before creating an Instance!</p>
+    {% else %}
+        {% for sg in sgs %}
+            <input type="checkbox" id="{{sg}}" name="{{sg}}">
+            <label for="{{sg}}">{{sg}}</label>
+        {% endfor %}
+    {% endif %}
+    <br><br><br>
+    {% for xtra in extra %}
+        <p class="warning">{{xtra}}</p>
+    {% endfor %}
+    <input type="submit" name="action" value="Create Instance">
+    <br><br><br>
+    <select class="rectinput" name="instance" id="instance-select">
+        <option value="">--Please choose a instance to delete--</option>
+        {% for instance in instances %}
+            <option value="{{instance}}">{{instance}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" name="action" value="Delete Instance">
+</form>
+</body>
+</html>
