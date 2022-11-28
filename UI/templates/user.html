@@ -6,16 +6,27 @@
 <h1>User</h1>
 <h2>Add a user with restrictions.</h2>
 <h3>Add</h3>
-<form method="POST" action="/user?region_option={{ region }}&sg={{sg}}">
-    <input class="rectinput" type="text" id="name" name="name" placeholder="matkwon">
+<form method="POST" action="/user?region_option={{ region }}">
+    <input class="rectinput" type="text" id="username" name="username" placeholder="matkwon">
     <br>
-    <input class="rectinput" type="text" id="action" name="action" placeholder="ec2:Describe*">
+    <input class="rectinput" type="text" id="useraction" name="useraction" placeholder="ec2:Describe*,ec2:Create*">
     <br>
-    <input type="submit" name="action" value="Add rule">
+    <select class="rectinput" name="usereffect" id="effect-select">
+        <option value="">--Allow/Deny--</option>
+        <option value="Allow">Allow</option>
+        <option value="Deny">Deny</option>
+    </select>
+    <input type="submit" name="action" value="Add user">
     <br>
 </form>
 <br><br>
-<h3>Create</h3>
-<form method="POST" action="/user?region_option={{ region }}&sg={{sg}}">
-    <input type="submit" name="action" value="Create Security Group">
+<h3>Remove</h3>
+<form method="POST" action="/user?region_option={{ region }}">
+    <select class="rectinput" name="userremove" id="user-select">
+        <option value="">--Please choose a user--</option>
+        {% for user in users %}
+            <option value="{{user}}">{{user}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" name="action" value="Remove User">
 </form>

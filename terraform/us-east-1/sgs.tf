@@ -15,11 +15,11 @@ resource "aws_security_group" "sg" {
   dynamic "ingress" {
     for_each = each.value.ports[*]
     content {
-      from_port   =  ingress.value.from
-      to_port     =  ingress.value.to
+      from_port   = ingress.value.from
+      to_port     = ingress.value.to
       protocol    = "tcp"
       cidr_blocks = [aws_vpc.vpc.cidr_block]
-  }
+    }
   }
 
   tags = {

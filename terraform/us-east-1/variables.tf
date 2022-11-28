@@ -38,7 +38,7 @@ variable "security_groups" {
   type = list(object({
     name        = string
     description = string
-    ports       = list(object({
+    ports = list(object({
       from = number
       to   = number
     }))
@@ -47,12 +47,12 @@ variable "security_groups" {
 }
 
 variable "users" {
-  type        = list(object({
-    name        = string
-    statements  = list(object({
-      action   = list(string)
-      effect   = string
-      resource = string
+  type = list(object({
+    name = string
+    statements = list(object({
+      Action   = list(string)
+      Effect   = string
+      Resource = string
     }))
   }))
   description = "Users"
@@ -61,11 +61,11 @@ variable "users" {
     statements = [
       {
         Action = [
-          "ec2:Describe*",
+          "ec2:Describe*"
         ]
         Effect   = "Allow"
         Resource = "*"
-      },
+      }
     ]
   }]
 }

@@ -15,7 +15,7 @@ resource "aws_iam_user_policy" "user_policy" {
   user  = var.users[count.index].name
 
   policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = var.users[count.index].statements
   })
 }

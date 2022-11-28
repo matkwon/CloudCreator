@@ -28,11 +28,45 @@ def index():
         return redirect(url_for('.region', region_option=region_option))
     return render_template('index.html', form=request.form)
 
+@app.route('/user', methods = ["GET", "POST"])
+def user():
+    region_option = request.args['region_option']
+    try:
+        f = open(f"../terraform/{region_option}/out.json", "r")
+        data = json.load(f)
+        f.close()
+        users = [user["name"] for user in data["users"]["value"]]
+    except:
+        users = []
+    if request.method == 'POST':
+        with open(f"../terraform/{region_option}/terraform.tfvars.json", "r") as f:
+            data = json.load(f)
+        if request.form['action'] == 'Add user':
+            data["users"].append({
+                "name": request.form.get('username'),
+                "statements": [{
+                    "Action": request.form.get('useraction').split(","),
+                    "Effect": request.form.get('usereffect'),
+                    "Resource": "*"
+                }]
+            })
+        else:
+            for user in data["users"]:
+                if user["name"] == request.form.get('userremove'):
+                    data["users"].remove(user)
+                    break
+        with open(f"../terraform/{region_option}/terraform.tfvars.json", "w") as f:
+            json.dump(data, f, indent=4)
+        terraform_execute(region_option, "")
+    return render_template('user.html', form=request.form, region=region_option, users=users)
+
 @app.route('/region', methods = ["GET", "POST"])
 def region():
     region_option = request.args['region_option']
     if request.method == 'POST':
-        if request.form.get('action') == 'Back':
+        if request.form.get('user') == 'Create/Delete user':
+            return redirect(url_for('.user', region_option=region_option))
+        elif request.form.get('action') == 'Back':
             return redirect(url_for('.index'))
         elif request.form.get('action') == 'Create/Configure/Delete VPC':
             return redirect(url_for('.vpc', region_option=region_option))
