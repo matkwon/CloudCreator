@@ -10,3 +10,4 @@ Entrar na pasta "UI" para ativar a interface:
 cd UI
 python3 main.py
 ```
+Por fim, acessar http://localhost:8081
