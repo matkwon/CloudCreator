@@ -47,6 +47,25 @@ variable "security_groups" {
 }
 
 variable "users" {
-  type        = list(string)
-  description = "Usernames"
+  type        = list(object({
+    name        = string
+    statements  = list(object({
+      action   = list(string)
+      effect   = string
+      resource = string
+    }))
+  }))
+  description = "Users"
+  default = [{
+    name = "value"
+    statements = [
+      {
+        Action = [
+          "ec2:Describe*",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  }]
 }

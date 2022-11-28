@@ -9,8 +9,8 @@ variable "vpc" {
 
 variable "subnets" {
   type = list(object({
-    cidr_block        = string
-    tags              = map(string)
+    cidr_block = string
+    tags       = map(string)
   }))
   description = "Subnets configuration"
 }
@@ -38,17 +38,12 @@ variable "security_groups" {
   type = list(object({
     name        = string
     description = string
+    ports       = list(object({
+      from = number
+      to   = number
+    }))
   }))
   description = "Security group for Transport Layer Security"
-}
-
-variable "rules" {
-  type = list(object({
-    from_port = number
-    to_port   = number
-    sg        = string
-  }))
-  description = "Rules"
 }
 
 variable "users" {

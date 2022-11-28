@@ -33,3 +33,4 @@ website/node_modules
 *.json
 *.tfstate
 *.out
+*.info
