@@ -103,7 +103,7 @@ def vpc():
             f = open(f"../terraform/{region_option}/terraform.tfvars.json", "w")
             json.dump(
                 {
-                    "vpc":{"cidr_block":"", "tags":{"Name":""}},
+                    "vpc":{"cidr_block":"0.0.0.0/16", "tags":{"Name":"vpc"}, "active":False},
                     "subnets":[],
                     "instances":[],
                     "network_interfaces":[],
