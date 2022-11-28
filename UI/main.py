@@ -33,7 +33,7 @@ def region():
     region_option = request.args['region_option']
     if request.method == 'POST':
         if request.form.get('action') == 'Back':
-            return redirect(url_for('.'))
+            return redirect(url_for('.index'))
         elif request.form.get('action') == 'Create/Configure/Delete VPC':
             return redirect(url_for('.vpc', region_option=region_option))
         elif request.form.get('action') == 'Create/Delete Subnet':

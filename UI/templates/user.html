@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+<form method="POST" action="/user?region_option={{ region }}">
+    <input type="submit" name="action" value="Home">
+</form>
+<h1>User</h1>
+<h2>Add a user with restrictions.</h2>
+<h3>Add</h3>
+<form method="POST" action="/user?region_option={{ region }}&sg={{sg}}">
+    <input class="rectinput" type="text" id="name" name="name" placeholder="matkwon">
+    <br>
+    <input class="rectinput" type="text" id="action" name="action" placeholder="ec2:Describe*">
+    <br>
+    <input type="submit" name="action" value="Add rule">
+    <br>
+</form>
+<br><br>
+<h3>Create</h3>
+<form method="POST" action="/user?region_option={{ region }}&sg={{sg}}">
+    <input type="submit" name="action" value="Create Security Group">
+</form>
